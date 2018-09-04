@@ -1,0 +1,54 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Sep 4, 2018, 11:47:08 AM
+    Author     : claudio
+*/
+
+* {
+    font-family: Arial, Helvetica, sans-serif
+}
+
+.page-heading {
+    font-size: 24pt;
+    text-align: center;
+}
+
+.flights-panel {
+    display: table;
+    width: 50%;
+    margin: 10px;
+    background-color: lightgray;
+}
+
+.flights-panel-row {
+    display: table-row;
+}
+
+.flights-panel-cell {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 5px;
+    
+    background-color: lightblue;
+}
+
+.flights-panel-first-cell {
+    width: 25%;
+}
+
+.company-logo {
+    width: 80px;
+    float: left;
+}
+
+.strong {
+    font-weight: bold;
+}
+
+.menu-panel {
+    float: right;
+}
