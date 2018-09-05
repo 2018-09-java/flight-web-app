@@ -8,10 +8,13 @@ package com.example.controllers;
 import com.example.model.Flight;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 /**
@@ -33,23 +36,42 @@ public class Flights extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            JSONObject obj = new JSONObject();
-//            JSONArray arr = new JSONArray();
+            JSONObject rootObj = new JSONObject();
 
-//            List<Flight> flights = new ArrayList();
-            //obj.put("flight", JSON.stringify(new Flight()));
+            List<Flight> flights = new ArrayList();
+
             try {
                 Flight flight = new Flight.Builder()
                         .setCode("AZ793")
                         .setFrom("Rome")
+                        .setTo("Munich")
                         .build();
-                obj.put("code", flight.getCode());
-                obj.put("from", flight.getFrom());
-                obj.put("to", flight.getTo());
-                out.print(obj);
+                flights.add(flight);
+                flight = new Flight.Builder()
+                        .setCode("AZ901")
+                        .setFrom("Rome")
+                        .setTo("Berlin")
+                        .build();
+                flights.add(flight);
             } catch (IllegalArgumentException e) {
                 response.setStatus(500);
             }
+
+            JSONArray jsonArray = new JSONArray();
+
+            flights.forEach(
+                    f -> {
+                        JSONObject flightJson = new JSONObject();
+                        flightJson.put("code", f.getCode());
+                        flightJson.put("from", f.getFrom());
+                        flightJson.put("to", f.getTo());
+                        jsonArray.put(flightJson);
+                    }
+            );
+
+            rootObj.put("flights", jsonArray);
+
+            out.print(rootObj);
 
         }
     }
