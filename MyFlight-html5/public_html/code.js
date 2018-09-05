@@ -9,16 +9,16 @@
 
 var code = {
     init: function () {
-        $.get("https://api.github.com/users/2018-09-java")
+        $.get("http://localhost:8080/MyFlight-server/flights")
                 .done(code.onGetSuccessYeah)
                 .fail(code.onErrorBoooh);
         
     },
     onGetSuccessYeah: function (dataJsonGithubApi) {
         console.log(dataJsonGithubApi);
-        console.log("Type is: " + dataJsonGithubApi.type);
-        $(".page-heading").html(dataJsonGithubApi.login);
-        $(".page-heading").html(dataJsonGithubApi.login);
+//        console.log("Type is: " + dataJsonGithubApi.type);
+//        $(".page-heading").html(dataJsonGithubApi.login);
+//        $(".page-heading").html(dataJsonGithubApi.login);
     },
     onErrorBoooh: function() {
         console.log(":....(");
