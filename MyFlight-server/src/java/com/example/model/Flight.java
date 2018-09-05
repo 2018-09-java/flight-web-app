@@ -15,6 +15,9 @@ public class Flight {
     private String from = "Rome";
     private String to = "Munich";
 
+    private Flight() {
+    }
+
     // NO! Perché dovrei creare tanti costruttori per casi diversi
 //    Flight(String code, String from, String to) {
 //        this.code = code;
