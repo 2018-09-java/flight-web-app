@@ -71,7 +71,7 @@ public class Flight {
                     && !this.to.equals("Unknown"))
                     || (this.to.equals("Unknown")
                     && !this.from.equals("Unknown"))) {
-                throw new IllegalArgumentException("From or to should be both set or default. Please set both of them or leave the default values.");
+                throw new IllegalArgumentException("From or to should be both set or default. From is " + this.from + ", To is " + this.to + ". Please set both of them or leave the default values.");
             }
 
             Flight flight = new Flight();

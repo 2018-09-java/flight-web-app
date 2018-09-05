@@ -38,7 +38,7 @@ public class FlightTest {
                     .setCode("AZ123")
                     .build();
         } catch (IllegalArgumentException e) {
-            fail("Should use default values.");
+            fail(e.getMessage());
         }
     }
 
@@ -64,7 +64,7 @@ public class FlightTest {
         System.out.println("testBuilderFromTo1");
         try {
             new Flight.Builder()
-                    .setFrom("Rome")
+                    .setTo("Rome")
                     .build();
             fail("Attribute To is not set.");
         } catch (IllegalArgumentException e) {
@@ -94,11 +94,13 @@ public class FlightTest {
         System.out.println("testBuilderFromTo3");
         try {
             new Flight.Builder()
+                    .setCode("AZ999")
                     .setFrom("Rome")
                     .setTo("Munich")
                     .build();
         } catch (IllegalArgumentException e) {
-            fail("Attributes From and To are both set.");
+            System.out.println(e.getMessage());
+            fail(e.getMessage());
         }
     }
 }
