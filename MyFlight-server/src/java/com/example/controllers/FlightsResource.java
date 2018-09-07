@@ -5,18 +5,16 @@
  */
 package com.example.controllers;
 
+import com.example.factory.FlightFactory;
 import com.example.model.Flight;
-import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -49,33 +47,7 @@ public class FlightsResource {
     public String getJson() {
         JSONObject rootObj = new JSONObject();
 
-        List<Flight> flights = new ArrayList();
-
-        try {
-            Flight flight = new Flight.Builder()
-                    .setCode("AZ793")
-                    .setFrom("Rome")
-                    .setTo("Munich")
-                    .setImgUrl("az-logo.png")
-                    .build();
-            flights.add(flight);
-            flight = new Flight.Builder()
-                    .setCode("AZ901")
-                    .setFrom("Rome")
-                    .setTo("Berlin")
-                    .setImgUrl("az-logo.png")
-                    .build();
-            flights.add(flight);
-            flight = new Flight.Builder()
-                    .setCode("IB902")
-                    .setFrom("Paris")
-                    .setTo("Beijing")
-                    .setImgUrl("ib-logo.png")
-                    .build();
-            flights.add(flight);
-        } catch (IllegalArgumentException e) {
-            throw new WebApplicationException(Response.Status.INTERNAL_SERVER_ERROR);
-        }
+        List<Flight> flights = FlightFactory.getAll(FlightFactory.MEMORY_IMPL);
 
         JSONArray jsonArray = new JSONArray();
 
