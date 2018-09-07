@@ -45,25 +45,11 @@ public class FlightsResource {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public String getJson() {
-        JSONObject rootObj = new JSONObject();
+        List< Flight> flights = FlightFactory.getAll(FlightFactory.MEMORY_IMPL);
 
-        List<Flight> flights = FlightFactory.getAll(FlightFactory.MEMORY_IMPL);
-
-        JSONArray jsonArray = new JSONArray();
-
-        flights.forEach(
-                f -> {
-                    JSONObject flightJson = new JSONObject();
-                    flightJson.put("code", f.getCode());
-                    flightJson.put("from", f.getFrom());
-                    flightJson.put("to", f.getTo());
-                    flightJson.put("imgUrl", f.getImgUrl());
-                    jsonArray.put(flightJson);
-                }
-        );
-
-        rootObj.put("flights", jsonArray);
-        return rootObj.toString();
+        return new JSONObject()
+                .put("flights", new JSONArray(flights))
+                .toString();
     }
 
     /**
