@@ -56,18 +56,21 @@ public class FlightsResource {
                     .setCode("AZ793")
                     .setFrom("Rome")
                     .setTo("Munich")
+                    .setImgUrl("az-logo.png")
                     .build();
             flights.add(flight);
             flight = new Flight.Builder()
                     .setCode("AZ901")
                     .setFrom("Rome")
                     .setTo("Berlin")
+                    .setImgUrl("az-logo.png")
                     .build();
             flights.add(flight);
             flight = new Flight.Builder()
-                    .setCode("AZ902")
+                    .setCode("IB902")
                     .setFrom("Paris")
                     .setTo("Beijing")
+                    .setImgUrl("ib-logo.png")
                     .build();
             flights.add(flight);
         } catch (IllegalArgumentException e) {
@@ -82,6 +85,7 @@ public class FlightsResource {
                     flightJson.put("code", f.getCode());
                     flightJson.put("from", f.getFrom());
                     flightJson.put("to", f.getTo());
+                    flightJson.put("imgUrl", f.getImgUrl());
                     jsonArray.put(flightJson);
                 }
         );

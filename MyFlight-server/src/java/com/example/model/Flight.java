@@ -15,6 +15,17 @@ public class Flight {
     private String from = "Rome";
     private String to = "Munich";
 
+    private String imgUrl = "";
+
+    /**
+     * Get the value of imgUrl
+     *
+     * @return the value of imgUrl
+     */
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
     private Flight() {
     }
 
@@ -46,6 +57,7 @@ public class Flight {
         private String code = "";
         private String from = "Unknown";
         private String to = "Unknown";
+        private String imgUrl = "Unknown";
 
         public Builder setCode(String code) {
             this.code = code;
@@ -59,6 +71,11 @@ public class Flight {
 
         public Builder setTo(String to) {
             this.to = to;
+            return this;
+        }
+
+        public Builder setImgUrl(String imgUrl) {
+            this.imgUrl = imgUrl;
             return this;
         }
 
@@ -78,6 +95,7 @@ public class Flight {
             flight.code = this.code;
             flight.from = this.from;
             flight.to = this.to;
+            flight.imgUrl = this.imgUrl;
             return flight;
         }
 
