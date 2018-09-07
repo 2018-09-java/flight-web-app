@@ -12,11 +12,16 @@ var code = {
         $.get("http://localhost:8080/MyFlight-server/webresources/flights")
                 .done(code.onGetSuccessYeah)
                 .fail(code.onErrorBoooh);
-        
+        $.get("https://breaking-bad-quotes.herokuapp.com/v1/quotes/")
+                .done(code.onGetBBSuccessYeah)
+                .fail(code.onErrorBoooh);
     },
     onGetSuccessYeah: function (dataJsonFlightApi) {
         console.log(dataJsonFlightApi);
         code.writeFlightList(dataJsonFlightApi.flights);
+    },
+    onGetBBSuccessYeah: function (dataBBJson) {
+        $("#bb-quote").html(dataBBJson[0].quote);
     },
     onErrorBoooh: function() {
         console.log(":....(");
@@ -28,7 +33,7 @@ var code = {
             var htmlStr = `
             <div class="flights-panel-row">
                 <div class="flights-panel-cell flights-panel-first-cell">
-                    <img class="company-logo" src="assets/az-logo.png" alt="company logo">
+                    <img class="company-logo" src="assets/`+f.imgUrl+`" alt="company logo">
                 </div>
                 <div class="flights-panel-cell">
                     <p>`+f.code+`</p>
